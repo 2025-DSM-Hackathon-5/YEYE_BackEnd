@@ -1,10 +1,12 @@
 package org.example.yeye_backend.domain.video.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.yeye_backend.domain.user.domain.User;
 import org.example.yeye_backend.domain.video.exception.VideoNotFoundException;
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.repository.VideoRepository;
 import org.example.yeye_backend.domain.video.repository.vo.VideoAndWriterData;
+import org.example.yeye_backend.domain.video.repository.vo.VideoListItemVO;
 import org.example.yeye_backend.domain.video.service.GetVideoService;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,10 @@ public class GetVideoServiceImpl implements GetVideoService {
         return videoRepository.getVideoAndWriterDataByVideoId(videoId).orElseThrow(
                 () -> VideoNotFoundException.EXCEPTION
         );
+    }
+
+    @Override
+    public List<VideoListItemVO> getVideoListByUser(User user) {
+        return videoRepository.getVideoListByUser(user);
     }
 }
