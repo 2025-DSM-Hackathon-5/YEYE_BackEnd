@@ -7,10 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
 @Getter
 @Builder
-@Table(name = "tbl_user")
+@Entity(name = "tbl_user")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
