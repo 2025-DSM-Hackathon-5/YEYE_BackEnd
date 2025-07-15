@@ -16,7 +16,10 @@ public enum GeneralErrorCode implements GlobalErrorCode {
 
     USER_NOT_FOUND(404, "일치하는 유저를 찾을 수 없습니다."),
     USER_EXIST(409, "유저가 이미 존재합니다."),
-    PASSWORD_MISMATCH(401, "비밀번호가 틀렸습니다.");
+    PASSWORD_MISMATCH(401, "비밀번호가 틀렸습니다."),
+
+    SESSION_NOT_FOUND(404, "해당 채팅 세션이 존재하지 않습니다."),
+    PRESENT_NOT_FOUND(404, "AI 커스텀 마이징이 존재하지 않습니다.");
 
     private final int ErrorCode;
     private final String ErrorMessage;

@@ -58,6 +58,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/video/{video}").authenticated();
 
                     // chat
+                    authorization
+                            .requestMatchers(HttpMethod.POST, "/chat/send").authenticated()
+                            .requestMatchers(HttpMethod.POST, "/chat/preset").authenticated()
+                            .requestMatchers(HttpMethod.GET, "/chat/preset").authenticated()
+                            .requestMatchers(HttpMethod.GET, "/chat").authenticated()
+                            .requestMatchers(HttpMethod.GET, "/chat/stream/**").permitAll();
+
 
                     authorization.anyRequest().denyAll();
                 })

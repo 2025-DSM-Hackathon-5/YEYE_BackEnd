@@ -5,7 +5,7 @@ import org.example.yeye_backend.domain.auth.exception.PasswordMisMatchException;
 import org.example.yeye_backend.domain.auth.presentation.request.LoginRequestDto;
 import org.example.yeye_backend.domain.auth.presentation.response.TokenResponse;
 import org.example.yeye_backend.domain.user.domain.User;
-import org.example.yeye_backend.domain.user.domain.exception.UserNotFoundException;
+import org.example.yeye_backend.domain.user.exception.UserNotFoundException;
 import org.example.yeye_backend.domain.user.domain.repository.UserRepository;
 import org.example.yeye_backend.global.security.jwt.JwtProperties;
 import org.example.yeye_backend.global.security.jwt.JwtTokenProvider;

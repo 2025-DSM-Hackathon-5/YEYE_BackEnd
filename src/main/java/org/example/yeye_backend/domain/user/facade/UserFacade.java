@@ -1,8 +1,8 @@
-package org.example.yeye_backend.domain.user.domain.facade;
+package org.example.yeye_backend.domain.user.facade;
 
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
-import org.example.yeye_backend.domain.user.domain.exception.UserNotFoundException;
+import org.example.yeye_backend.domain.user.exception.UserNotFoundException;
 import org.example.yeye_backend.domain.user.domain.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

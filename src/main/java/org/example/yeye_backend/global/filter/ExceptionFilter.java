@@ -32,8 +32,12 @@ public class ExceptionFilter extends OncePerRequestFilter {
     }
 
     private void convertErrorToJson(HttpServletResponse response, GlobalErrorCode errorCode) throws IOException {
-        response.setStatus(errorCode.getErrorCode());
-        response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(objectMapper.writeValueAsString(ExceptionResponse.of(errorCode)));
+        if (!response.isCommitted()) {
+            response.setStatus(errorCode.getErrorCode());
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(objectMapper.writeValueAsString(ExceptionResponse.of(errorCode)));
+        } else {
+            log.warn("Response is already committed. Cannot write error message.");
+        }
     }
 }
