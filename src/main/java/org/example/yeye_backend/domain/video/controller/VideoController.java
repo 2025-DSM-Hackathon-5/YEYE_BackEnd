@@ -4,8 +4,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.video.dto.request.CreateVideoRequestDto;
 import org.example.yeye_backend.domain.video.dto.request.UpdateVideoRequestDto;
+import org.example.yeye_backend.domain.video.dto.response.GetRandomVideoDetailResponseDto;
 import org.example.yeye_backend.domain.video.usecase.CreateVideoUseCase;
 import org.example.yeye_backend.domain.video.usecase.DeleteVideoUseCase;
+import org.example.yeye_backend.domain.video.usecase.GetRandomVideoDetailUseCase;
 import org.example.yeye_backend.domain.video.usecase.UpdateVideoUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ public class VideoController {
     private final CreateVideoUseCase createVideoUseCase;
     private final DeleteVideoUseCase deleteVideoUseCase;
     private final UpdateVideoUseCase updateVideoUseCase;
+    private final GetRandomVideoDetailUseCase getRandomVideoDetailUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -44,5 +47,11 @@ public class VideoController {
         @RequestBody @Valid UpdateVideoRequestDto request
     ) {
         updateVideoUseCase.execute(videoId, request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    public GetRandomVideoDetailResponseDto getRandomVideoDetail() {
+        return getRandomVideoDetailUseCase.execute();
     }
 }

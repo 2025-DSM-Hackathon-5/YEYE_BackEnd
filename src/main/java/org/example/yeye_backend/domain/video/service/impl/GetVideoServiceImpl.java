@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.video.exception.VideoNotFoundException;
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.repository.VideoRepository;
+import org.example.yeye_backend.domain.video.repository.vo.VideoAndWriterData;
 import org.example.yeye_backend.domain.video.service.GetVideoService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,6 +20,18 @@ public class GetVideoServiceImpl implements GetVideoService {
     public Video getVideoById(UUID videoId) {
         return videoRepository.findById(videoId).orElseThrow(
             () -> VideoNotFoundException.EXCEPTION
+        );
+    }
+
+    @Override
+    public List<UUID> getIdList() {
+        return videoRepository.getAllIds();
+    }
+
+    @Override
+    public VideoAndWriterData getVideoAndWriterDataByVideoId(UUID videoId) {
+        return videoRepository.getVideoAndWriterDataByVideoId(videoId).orElseThrow(
+                () -> VideoNotFoundException.EXCEPTION
         );
     }
 }
