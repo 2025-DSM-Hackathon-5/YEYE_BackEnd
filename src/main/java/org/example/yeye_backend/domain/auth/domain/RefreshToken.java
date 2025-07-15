@@ -1,6 +1,6 @@
 package org.example.yeye_backend.domain.auth.domain;
 
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

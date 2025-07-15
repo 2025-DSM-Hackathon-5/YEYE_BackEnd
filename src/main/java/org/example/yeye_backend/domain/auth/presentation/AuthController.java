@@ -12,7 +12,7 @@ import org.example.yeye_backend.domain.auth.service.SignupService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class AuthController {
     private final SignupService signupService;
