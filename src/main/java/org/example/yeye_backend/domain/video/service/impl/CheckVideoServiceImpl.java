@@ -13,7 +13,7 @@ public class CheckVideoServiceImpl implements CheckVideoService {
 
     @Override
     public void CheckUserIsOwnerOfVideo(User user, Video video) {
-        if (user != video.getUser()) {
+        if (user.getAccountId().equals(video.getUser().getAccountId())) {
             throw IsNotOwnerOfVideoException.EXCEPTION;
         }
     }
