@@ -1,14 +1,17 @@
 package org.example.yeye_backend.domain.video.model;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
 
 import java.io.Serializable;
 
 @EqualsAndHashCode
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class LikeId implements Serializable {
-    private final Video video;
-    private final User user;
+    private Video video;
+    private User user;
 }

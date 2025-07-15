@@ -22,6 +22,7 @@ public class VideoController {
     private final UpdateVideoUseCase updateVideoUseCase;
     private final GetMyVideoListUseCase getMyVideoListUseCase;
     private final GetRandomVideoDetailUseCase getRandomVideoDetailUseCase;
+    private final ToggleLikeUseCase toggleLikeUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -58,5 +59,11 @@ public class VideoController {
     @GetMapping
     public GetRandomVideoDetailResponseDto getRandomVideoDetail() {
         return getRandomVideoDetailUseCase.execute();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{videoId}")
+    public void toggleLike(@PathVariable UUID videoId) {
+        toggleLikeUseCase.execute(videoId);
     }
 }
