@@ -6,6 +6,6 @@ import org.example.yeye_backend.global.exception.generalExceptions.errorCode.Gen
 public class SessionNotFoundException extends GlobalBusinessException {
     public final static GlobalBusinessException EXCEPTION = new SessionNotFoundException();
     private SessionNotFoundException(){
-        super(GeneralErrorCode.SESSION_NOT_FOUNT);
+        super(GeneralErrorCode.SESSION_NOT_FOUND);
     }
 }

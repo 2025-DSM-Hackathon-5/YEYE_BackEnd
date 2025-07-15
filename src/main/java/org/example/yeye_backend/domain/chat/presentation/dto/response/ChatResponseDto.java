@@ -7,7 +7,7 @@
     public record ChatResponseDto(
             String role,
             String content,
-            String createAt
+            String createdAt
     ) {
         public static ChatResponseDto from(ChatMessage message) {
             return new ChatResponseDto(

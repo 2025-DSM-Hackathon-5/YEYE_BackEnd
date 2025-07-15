@@ -2,6 +2,7 @@ package org.example.yeye_backend.domain.chat.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.chat.domain.repository.PresetRepository;
+import org.example.yeye_backend.domain.chat.exception.PresetNotFoundException;
 import org.example.yeye_backend.domain.chat.presentation.dto.response.PresetResponseDto;
 import org.example.yeye_backend.domain.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,6 @@ public class QueryPresetService {
                 .stream()
                 .map(PresetResponseDto::from)
                 .findFirst()
-                .orElse(null); //TODO : EXCEPTION 추가
+                .orElseThrow(() -> PresetNotFoundException.EXCEPTION); //TODO : EXCEPTION 추가
     }
 }
