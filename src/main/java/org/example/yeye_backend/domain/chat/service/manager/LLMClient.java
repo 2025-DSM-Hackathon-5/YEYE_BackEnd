@@ -34,8 +34,6 @@ public class LLMClient {
                 "prompt", preset.getSystemPrompt()
         );
 
-        System.out.println(requestBody);
-
         StringBuilder buffer = new StringBuilder();
 
         webClient.post()
