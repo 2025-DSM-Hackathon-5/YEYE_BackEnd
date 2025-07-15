@@ -5,12 +5,14 @@ import org.example.yeye_backend.domain.chat.domain.Preset;
 import org.example.yeye_backend.domain.chat.domain.repository.PresetRepository;
 import org.example.yeye_backend.domain.user.domain.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class PresetService {
     private final PresetRepository presetRepository;
 
+    @Transactional
     public Preset loadOrCreatePreset(User user){
         return presetRepository.findByUser(user)
                 .orElseGet(() -> presetRepository.save(
