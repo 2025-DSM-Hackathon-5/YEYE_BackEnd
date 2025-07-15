@@ -11,6 +11,8 @@ import org.example.yeye_backend.domain.auth.domain.repository.RefreshTokenReposi
 import org.example.yeye_backend.domain.user.domain.User;
 import org.example.yeye_backend.domain.user.domain.repository.UserRepository;
 import org.example.yeye_backend.global.security.auth.AuthDetails;
+import org.example.yeye_backend.global.security.jwt.exception.ExpiredJwtException;
+import org.example.yeye_backend.global.security.jwt.exception.InvalidJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -76,9 +78,9 @@ public class JwtTokenProvider {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e){
-            throw new RuntimeException(e); // TODO : 알맞은 EXCEPTION 추가
+            throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e){
-            throw new RuntimeException(e); // TODO : 알맞은 EXCEPTION 추가
+            throw InvalidJwtException.EXCEPTION;
         }
     }
 
