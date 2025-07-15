@@ -11,4 +11,8 @@ public record ExceptionResponse(
     public static ExceptionResponse of(GlobalErrorCode e) {
         return new ExceptionResponse(e.getErrorCode(), e.getErrorMessage(), e.getErrorMessage(), LocalDateTime.now());
     }
+
+    public static ExceptionResponse of(GlobalErrorCode e, String description) {
+        return new ExceptionResponse(e.getErrorCode(), e.getErrorMessage(), description, LocalDateTime.now());
+    }
 }
