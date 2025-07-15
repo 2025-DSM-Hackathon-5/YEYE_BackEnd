@@ -6,16 +6,17 @@ import org.example.yeye_backend.domain.chat.domain.repository.ChatMessageReposit
 import org.example.yeye_backend.domain.user.domain.User;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ChatMessageService {
     private final ChatMessageRepository chatMessageRepository;
 
+    @Transactional
     public ChatMessage saveUserMessage(String sessionId, String message, User user){
         ChatMessage saved = ChatMessage.builder()
                 .sessionId(sessionId)
@@ -28,6 +29,7 @@ public class ChatMessageService {
         return chatMessageRepository.save(saved);
     }
 
+    @Transactional
     public void saveAssistantMessage(String sessionId, String message, User user){
         chatMessageRepository.save(ChatMessage.builder()
                 .sessionId(sessionId)
