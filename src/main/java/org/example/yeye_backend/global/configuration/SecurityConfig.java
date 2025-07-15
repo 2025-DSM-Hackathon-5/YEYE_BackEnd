@@ -1,4 +1,4 @@
-package org.example.yeye_backend.global.configration;
+package org.example.yeye_backend.global.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.global.security.jwt.JwtTokenFilter;
@@ -13,11 +13,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
+    private final CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -44,11 +46,11 @@ public class SecurityConfig {
                     // video
                     authorization
                         .requestMatchers(HttpMethod.POST, "/video").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/video/:video").authenticated()
-                        .requestMatchers(HttpMethod.PATCH, "/video/:video").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/video/{video}").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/video/{video}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/video").authenticated()
                         .requestMatchers(HttpMethod.GET, "/video/my").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/video/:video").authenticated();
+                        .requestMatchers(HttpMethod.PUT, "/video/{video}").authenticated();
 
                     // chat
 
@@ -61,6 +63,10 @@ public class SecurityConfig {
 
                 .headers(header -> {
                     header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin);
+                })
+
+                .cors(cors -> {
+                    cors.configurationSource(corsConfigurationSource);
                 })
 
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
