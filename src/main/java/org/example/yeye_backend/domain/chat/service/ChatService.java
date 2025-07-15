@@ -28,7 +28,6 @@ public class ChatService {
         ChatMessage current = chatMessageService.saveUserMessage(sessionId, message, user);
 
         List<ChatMessage> history = chatMessageService.loadRecentMessagesBefore(current, user);
-        System.out.println(history);
         Preset preset = presetService.loadOrCreatePreset(user);
 
         llmClient.chat(message, history, preset, sessionId, user);
