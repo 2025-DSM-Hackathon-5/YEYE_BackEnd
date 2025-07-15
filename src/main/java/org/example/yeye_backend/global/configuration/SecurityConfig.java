@@ -1,6 +1,8 @@
 package org.example.yeye_backend.global.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.example.yeye_backend.global.filter.ExceptionFilter;
 import org.example.yeye_backend.global.security.jwt.JwtTokenFilter;
 import org.example.yeye_backend.global.security.jwt.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+    private final ObjectMapper objectMapper;
     private final JwtTokenProvider jwtTokenProvider;
     private final CorsConfigurationSource corsConfigurationSource;
 
@@ -72,6 +75,7 @@ public class SecurityConfig {
                 })
 
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new ExceptionFilter(objectMapper), JwtTokenFilter.class)
 
                 .build();
     }
