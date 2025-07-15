@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.auth.presentation.request.RegisterRequestDto;
 import org.example.yeye_backend.domain.common.service.FileUploadService;
 import org.example.yeye_backend.domain.user.domain.User;
-import org.example.yeye_backend.domain.user.domain.exception.UserExistException;
+import org.example.yeye_backend.domain.user.exception.UserExistException;
 import org.example.yeye_backend.domain.user.domain.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package org.example.yeye_backend.domain.user.domain.exception;
+package org.example.yeye_backend.domain.user.exception;
 
 import org.example.yeye_backend.global.exception.GlobalBusinessException;
 import org.example.yeye_backend.global.exception.generalExceptions.errorCode.GeneralErrorCode;
