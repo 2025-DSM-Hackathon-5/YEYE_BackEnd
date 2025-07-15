@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class CheckLikeServiceImpl implements CheckLikeService {
     private final LikeRepository likeRepository;
 
+    @Override
     public boolean getCheckLikeExistsByUserAndVideoResult(User user, Video video) {
         return likeRepository.existsById(new LikeId(video, user));
     }
