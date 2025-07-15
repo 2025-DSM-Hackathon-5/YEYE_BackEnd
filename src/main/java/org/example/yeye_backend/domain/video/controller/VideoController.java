@@ -4,11 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.video.dto.request.CreateVideoRequestDto;
 import org.example.yeye_backend.domain.video.dto.request.UpdateVideoRequestDto;
+import org.example.yeye_backend.domain.video.dto.response.GetMyVideoListResponseDto;
 import org.example.yeye_backend.domain.video.dto.response.GetRandomVideoDetailResponseDto;
-import org.example.yeye_backend.domain.video.usecase.CreateVideoUseCase;
-import org.example.yeye_backend.domain.video.usecase.DeleteVideoUseCase;
-import org.example.yeye_backend.domain.video.usecase.GetRandomVideoDetailUseCase;
-import org.example.yeye_backend.domain.video.usecase.UpdateVideoUseCase;
+import org.example.yeye_backend.domain.video.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +20,7 @@ public class VideoController {
     private final CreateVideoUseCase createVideoUseCase;
     private final DeleteVideoUseCase deleteVideoUseCase;
     private final UpdateVideoUseCase updateVideoUseCase;
+    private final GetMyVideoListUseCase getMyVideoListUseCase;
     private final GetRandomVideoDetailUseCase getRandomVideoDetailUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -47,6 +46,12 @@ public class VideoController {
         @RequestBody @Valid UpdateVideoRequestDto request
     ) {
         updateVideoUseCase.execute(videoId, request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/my")
+    public GetMyVideoListResponseDto getMyVideoList() {
+        return getMyVideoListUseCase.execute();
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -1,7 +1,9 @@
 package org.example.yeye_backend.domain.video.repository;
 
+import org.example.yeye_backend.domain.user.domain.User;
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.repository.vo.VideoAndWriterData;
+import org.example.yeye_backend.domain.video.repository.vo.VideoListItemVO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -31,4 +33,16 @@ public interface VideoRepository extends CrudRepository<Video, UUID> {
         FROM tbl_video v
     """)
     List<UUID> getAllIds();
+
+    @Query("""
+        SELECT new org.example.yeye_backend.domain.video.repository.vo.VideoListItemVO(
+            v.videoId,
+            v.videoUrl,
+            v.thumbnailUrl,
+            v.title
+        )
+        FROM tbl_video v
+        WHERE v.user = :user
+    """)
+    List<VideoListItemVO> getVideoListByUser(@Param("user") User user);
 }
