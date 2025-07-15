@@ -3,8 +3,10 @@ package org.example.yeye_backend.domain.video.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.video.dto.request.CreateVideoRequestDto;
+import org.example.yeye_backend.domain.video.dto.request.UpdateVideoRequestDto;
 import org.example.yeye_backend.domain.video.usecase.CreateVideoUseCase;
 import org.example.yeye_backend.domain.video.usecase.DeleteVideoUseCase;
+import org.example.yeye_backend.domain.video.usecase.UpdateVideoUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class VideoController {
     private final CreateVideoUseCase createVideoUseCase;
     private final DeleteVideoUseCase deleteVideoUseCase;
+    private final UpdateVideoUseCase updateVideoUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -32,5 +35,14 @@ public class VideoController {
     @DeleteMapping("/{videoId}")
     public void deleteVideo(@PathVariable UUID videoId) {
         deleteVideoUseCase.execute(videoId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/{videoId}")
+    public void updateVideo(
+        @PathVariable UUID videoId,
+        @RequestBody @Valid UpdateVideoRequestDto request
+    ) {
+        updateVideoUseCase.execute(videoId, request);
     }
 }

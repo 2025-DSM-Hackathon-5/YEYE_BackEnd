@@ -8,9 +8,11 @@ import org.example.yeye_backend.domain.video.dto.request.CreateVideoRequestDto;
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.service.CommandVideoService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CreateVideoUseCase {
     private final UserFacade userFacade;

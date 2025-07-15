@@ -1,10 +1,7 @@
 package org.example.yeye_backend.domain.video.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.yeye_backend.domain.user.domain.User;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -13,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.UUID;
 
+@Setter
 @Getter
 @Builder
 @Entity(name = "tbl_video")
