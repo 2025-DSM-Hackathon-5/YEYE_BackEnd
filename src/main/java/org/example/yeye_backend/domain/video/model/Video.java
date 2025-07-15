@@ -2,6 +2,7 @@ package org.example.yeye_backend.domain.video.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
@@ -13,6 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.util.UUID;
 
 @Getter
+@Builder
 @Entity(name = "tbl_video")
 @DynamicInsert
 @DynamicUpdate
@@ -30,6 +32,9 @@ public class Video {
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String videoUrl;
+
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
+    private String thumbnailUrl;
 
     @Column(columnDefinition = "VARCHAR(15)", nullable = false)
     private String title;

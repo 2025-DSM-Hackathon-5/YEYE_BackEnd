@@ -2,6 +2,7 @@ package org.example.yeye_backend.domain.video.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
+@Builder
 @Entity(name = "tbl_like")
 @IdClass(LikeId.class)
 @DynamicInsert
