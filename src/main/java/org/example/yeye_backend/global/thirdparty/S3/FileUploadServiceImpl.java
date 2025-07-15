@@ -19,15 +19,17 @@ public class FileUploadServiceImpl implements FileUploadService {
     private final S3Properties s3Properties;
 
     @Override
-    public void uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file) {
         try {
-            String name = UUID.randomUUID() + file.getOriginalFilename();
+            String name = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(file.getContentType());
             objectMetadata.setContentLength(file.getSize());
 
             amazonS3Client.putObject(s3Properties.getBucketName(), name, file.getInputStream(), objectMetadata);
+
+            return amazonS3Client.getResourceUrl(s3Properties.getBucketName(), name);
         } catch (Exception e) {
             log.error("file upload failed. reason: " + e.getMessage());
             throw InternalServerErrorException.EXCEPTION;

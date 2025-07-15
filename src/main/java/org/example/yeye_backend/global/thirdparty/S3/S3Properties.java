@@ -14,6 +14,6 @@ public class S3Properties {
     @Value("${cloud.aws.credentials.access-key}")
     private String accessKey;
 
-    @Value("cloud.aws.credentials.secret-key")
+    @Value("${cloud.aws.credentials.secret-key}")
     private String secretKey;
 }
