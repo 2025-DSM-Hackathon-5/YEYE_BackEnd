@@ -11,6 +11,7 @@ import org.example.yeye_backend.domain.chat.service.QueryPresetService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
@@ -36,8 +37,11 @@ public class ChatController {
     }
 
     @PostMapping("/preset")
-    public ResponseEntity<Void> updatePreset(@RequestBody PresetRequestDto dto){
-        chatService.updatePreset(dto.name(), dto.prompt());
+    public ResponseEntity<Void> updatePreset(
+        @RequestPart("body") PresetRequestDto dto,
+        @RequestPart(value = "profile", required = false) MultipartFile profile
+    ) {
+        chatService.updatePreset(dto.name(), dto.prompt(), profile);
         return ResponseEntity.ok().build();
     }
 

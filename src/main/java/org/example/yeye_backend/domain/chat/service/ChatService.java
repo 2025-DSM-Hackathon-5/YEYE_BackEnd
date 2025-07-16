@@ -8,6 +8,7 @@ import org.example.yeye_backend.domain.chat.service.manager.LLMClient;
 import org.example.yeye_backend.domain.user.domain.User;
 import org.example.yeye_backend.domain.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
@@ -38,8 +39,8 @@ public class ChatService {
         return chatSessionManager.getEmitter(sessionId);
     }
 
-    public void updatePreset(String name, String prompt) {
+    public void updatePreset(String name, String prompt, MultipartFile profile) {
         User user = userFacade.getCurrentUser();
-        presetService.updatePreset(user, name, prompt);
+        presetService.updatePreset(user, name, prompt, profile);
     }
 }
