@@ -2,7 +2,7 @@ package org.example.yeye_backend.domain.video.usecase;
 
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
-import org.example.yeye_backend.domain.user.domain.facade.UserFacade;
+import org.example.yeye_backend.domain.user.facade.UserFacade;
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.service.CheckVideoService;
 import org.example.yeye_backend.domain.video.service.CommandVideoService;

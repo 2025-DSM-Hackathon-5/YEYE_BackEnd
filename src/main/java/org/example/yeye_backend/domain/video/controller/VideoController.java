@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.video.dto.request.CreateVideoRequestDto;
 import org.example.yeye_backend.domain.video.dto.request.UpdateVideoRequestDto;
+import org.example.yeye_backend.domain.video.dto.response.CreateVideoResponseDto;
 import org.example.yeye_backend.domain.video.dto.response.GetMyVideoListResponseDto;
 import org.example.yeye_backend.domain.video.dto.response.GetRandomVideoDetailResponseDto;
 import org.example.yeye_backend.domain.video.usecase.*;
@@ -26,12 +27,12 @@ public class VideoController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createVideo(
+    public CreateVideoResponseDto createVideo(
         @RequestPart("video") MultipartFile video,
         @RequestPart("thumbnail") MultipartFile thumbnail,
         @RequestPart("body") @Valid CreateVideoRequestDto request
     ) {
-        createVideoUseCase.execute(video, thumbnail, request);
+        return createVideoUseCase.execute(video, thumbnail, request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

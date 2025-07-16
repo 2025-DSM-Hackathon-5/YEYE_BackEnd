@@ -14,8 +14,8 @@ public class CommandVideoServiceImpl implements CommandVideoService {
     private final VideoRepository videoRepository;
 
     @Override
-    public void saveVideo(Video video) {
-        videoRepository.save(video);
+    public UUID saveVideo(Video video) {
+        return videoRepository.save(video).getVideoId();
     }
 
     @Override

@@ -2,8 +2,8 @@ package org.example.yeye_backend.domain.user.domain.usecase;
 
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.user.domain.User;
-import org.example.yeye_backend.domain.user.domain.facade.UserFacade;
 import org.example.yeye_backend.domain.user.domain.service.CommandUserService;
+import org.example.yeye_backend.domain.user.facade.UserFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

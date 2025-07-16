@@ -5,7 +5,7 @@ import org.example.yeye_backend.domain.video.model.Video;
 import java.util.UUID;
 
 public interface CommandVideoService {
-    void saveVideo(Video video);
+    UUID saveVideo(Video video);
 
     void deleteVideoById(UUID videoId);
 }
