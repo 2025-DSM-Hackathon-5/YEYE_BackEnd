@@ -3,8 +3,9 @@ package org.example.yeye_backend.domain.chat.presentation;
 import lombok.RequiredArgsConstructor;
 import org.example.yeye_backend.domain.chat.presentation.dto.request.ChatRequestDto;
 import org.example.yeye_backend.domain.chat.presentation.dto.request.PresetRequestDto;
-import org.example.yeye_backend.domain.chat.presentation.dto.response.ChatResponseDto;
+import org.example.yeye_backend.domain.chat.presentation.dto.response.ChatHistoryListResponseDto;
 import org.example.yeye_backend.domain.chat.presentation.dto.response.PresetResponseDto;
+import org.example.yeye_backend.domain.chat.presentation.dto.response.SendMessageResponseDto;
 import org.example.yeye_backend.domain.chat.service.ChatService;
 import org.example.yeye_backend.domain.chat.service.QueryChatMessagesListService;
 import org.example.yeye_backend.domain.chat.service.QueryPresetService;
@@ -26,9 +27,9 @@ public class ChatController {
     private final QueryPresetService queryPresetService;
 
     @PostMapping("/send")
-    public ResponseEntity<String> sendMessage(@RequestBody ChatRequestDto dto){
+    public SendMessageResponseDto sendMessage(@RequestBody ChatRequestDto dto){
         String sessionId = chatService.handleUserMessage(dto.message());
-        return ResponseEntity.ok(sessionId);
+        return new SendMessageResponseDto(sessionId);
     }
 
     @GetMapping(value = "/stream/{sessionId}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -37,16 +38,15 @@ public class ChatController {
     }
 
     @PostMapping("/preset")
-    public ResponseEntity<Void> updatePreset(
+    public void updatePreset(
         @RequestPart("body") PresetRequestDto dto,
         @RequestPart(value = "profile", required = false) MultipartFile profile
     ) {
         chatService.updatePreset(dto.name(), dto.prompt(), profile);
-        return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public List<ChatResponseDto> getChatMessage(){
+    public ChatHistoryListResponseDto getChatMessage(){
         return queryChatMessagesListService.getChatMessages();
     }
 

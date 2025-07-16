@@ -9,6 +9,7 @@ import org.example.yeye_backend.domain.user.domain.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -18,12 +19,12 @@ public class SignupService {
     private final FileUploadService fileUploadService;
 
     @Transactional
-    public void signup(RegisterRequestDto dto){
+    public void signup(MultipartFile profileImage, RegisterRequestDto dto){
         if(userRepository.findByAccountId(dto.accountId()).isPresent()){
             throw UserExistException.EXCEPTION;
         }
 
-        String profileImageUrl = fileUploadService.uploadFile(dto.profileImage());
+        String profileImageUrl = fileUploadService.uploadFile(profileImage);
 
         userRepository.save(User.builder()
                 .accountId(dto.accountId())
