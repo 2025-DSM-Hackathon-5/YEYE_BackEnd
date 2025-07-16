@@ -17,6 +17,6 @@ public class DeleteUserUseCase {
     public void execute() {
         User user = userFacade.getCurrentUser();
 
-        commandUserService.deleteUserByUserId(user.getId());
+        commandUserService.deleteUserByUserId(user.getAccountId());
     }
 }

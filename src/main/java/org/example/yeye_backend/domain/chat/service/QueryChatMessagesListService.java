@@ -17,7 +17,7 @@ public class QueryChatMessagesListService {
 
     @Transactional(readOnly = true)
     public ChatHistoryListResponseDto getChatMessages() {
-        Long userId = userFacade.getCurrentUser().getId();
+        String userId = userFacade.getCurrentUser().getAccountId();
 
         return ChatHistoryListResponseDto.from(
                 chatMessageRepository.findByUserIdOrderByCreatedAtDesc(userId)

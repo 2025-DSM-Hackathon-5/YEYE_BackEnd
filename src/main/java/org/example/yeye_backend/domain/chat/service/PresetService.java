@@ -23,7 +23,7 @@ public class PresetService {
                                 .user(user)
                                 .name("친절한 AI")
                                 .systemPrompt("어떠한 질문이든 친절히 대답해주세요")
-                                .profile("https://songju-bucket.s3.ap-northeast-2.amazonaws.com/user.png")
+                                .profile("https://songju-bucket.s3.ap-northeast-2.amazonaws.com/DefaultProfile.png")
                                 .build()));
     }
 
@@ -34,7 +34,7 @@ public class PresetService {
                         .user(user)
                         .name("친절한 AI")
                         .systemPrompt("어떠한 질문이든 친절히 대답해주세요.")
-                        .profile("https://songju-bucket.s3.ap-northeast-2.amazonaws.com/user.png")
+                        .profile("https://songju-bucket.s3.ap-northeast-2.amazonaws.com/DefaultProfile.png")
                         .build());
 
         preset.setName(name);

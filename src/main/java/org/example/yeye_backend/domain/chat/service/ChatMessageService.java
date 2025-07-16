@@ -43,7 +43,7 @@ public class ChatMessageService {
     public List<ChatMessage> loadRecentMessagesBefore(ChatMessage currentMessage, User user) {
         return chatMessageRepository.findRecentUserMessagesByCreatedAtAndUserId(
                 currentMessage.getCreatedAt(),
-                user.getId(),
+                user.getAccountId(),
                 PageRequest.of(0, 4)
         );
     }

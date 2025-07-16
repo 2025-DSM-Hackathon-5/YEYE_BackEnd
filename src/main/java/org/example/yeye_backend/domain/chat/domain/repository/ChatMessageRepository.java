@@ -14,21 +14,21 @@ public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> 
     SELECT m FROM ChatMessage m 
     WHERE m.createdAt < :createdAt 
       AND m.role = 'user'
-      AND m.user.id = :userId
+      AND m.user.accountId = :userId
     ORDER BY m.createdAt DESC
 """)
     List<ChatMessage> findRecentUserMessagesByCreatedAtAndUserId(
             @org.springframework.data.repository.query.Param("createdAt") java.time.LocalDateTime createdAt,
-            @org.springframework.data.repository.query.Param("userId") Long userId,
+            @org.springframework.data.repository.query.Param("userId") String userId,
             Pageable pageable
     );
 
     @Query("""
     SELECT m FROM ChatMessage m
-    WHERE m.user.id = :userId
+    WHERE m.user.accountId = :userId
     ORDER BY m.createdAt DESC
 """)
-    List<ChatMessage> findByUserIdOrderByCreatedAtDesc(@Param("userId") Long userId);
+    List<ChatMessage> findByUserIdOrderByCreatedAtDesc(@Param("userId") String userId);
 
 
 

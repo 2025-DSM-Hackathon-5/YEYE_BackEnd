@@ -24,7 +24,10 @@ public class SignupService {
             throw UserExistException.EXCEPTION;
         }
 
-        String profileImageUrl = fileUploadService.uploadFile(profileImage);
+        String profileImageUrl = null;
+        if (profileImage != null) {
+            profileImageUrl = fileUploadService.uploadFile(profileImage);
+        }
 
         userRepository.save(User.builder()
                 .accountId(dto.accountId())

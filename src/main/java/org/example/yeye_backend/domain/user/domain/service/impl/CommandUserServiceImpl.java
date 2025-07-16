@@ -11,7 +11,7 @@ public class CommandUserServiceImpl implements CommandUserService {
     private final UserRepository userRepository;
 
     @Override
-    public void deleteUserByUserId(Long id) {
+    public void deleteUserByUserId(String id) {
         userRepository.deleteById(id);
     }
 }

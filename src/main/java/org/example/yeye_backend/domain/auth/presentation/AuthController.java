@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public void signUp(
-        @RequestPart("profile") MultipartFile profileImage,
+        @RequestPart(value = "profile", required = false) MultipartFile profileImage,
         @RequestPart("body") @Valid RegisterRequestDto dto
     ){
         signupService.signup(profileImage, dto);

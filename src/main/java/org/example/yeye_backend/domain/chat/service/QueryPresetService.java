@@ -17,8 +17,8 @@ public class QueryPresetService {
 
     @Transactional(readOnly = true)
     public PresetResponseDto getPreset(){
-        Long userId = userFacade.getCurrentUser().getId();
-        return presetRepository.findByUserId(userId)
+        String userId = userFacade.getCurrentUser().getAccountId();
+        return presetRepository.findByUserAccountId(userId)
                 .stream()
                 .map(PresetResponseDto::from)
                 .findFirst()
