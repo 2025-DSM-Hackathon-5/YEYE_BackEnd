@@ -46,4 +46,9 @@ public class GetVideoServiceImpl implements GetVideoService {
     public List<Video> getAllVideo() {
         return videoRepository.findAllVideo();
     }
+
+    @Override
+    public List<String> getLikedVideoThumbnails(User user) {
+        return videoRepository.getLikedVideoThumbnails(user);
+    }
 }

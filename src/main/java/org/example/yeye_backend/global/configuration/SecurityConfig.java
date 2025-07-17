@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/video/{video}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/video").authenticated()
                         .requestMatchers(HttpMethod.GET, "/video/my").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/video/liked").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/video/{video}").authenticated();
 
                     // chat

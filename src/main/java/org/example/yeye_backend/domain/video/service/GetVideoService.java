@@ -18,4 +18,6 @@ public interface GetVideoService {
     List<VideoListItemVO> getVideoListByUser(User user);
 
     List<Video> getAllVideo();
+
+    List<String> getLikedVideoThumbnails(User user);
 }

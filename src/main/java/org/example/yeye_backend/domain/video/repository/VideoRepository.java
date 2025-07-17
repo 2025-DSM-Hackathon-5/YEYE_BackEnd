@@ -51,4 +51,11 @@ public interface VideoRepository extends CrudRepository<Video, UUID> {
         FROM tbl_video v
     """)
     List<Video> findAllVideo();
+
+    @Query("""
+        SELECT v.thumbnailUrl
+        FROM tbl_video v INNER JOIN tbl_like l ON v = l.video
+        WHERE l.user = :user
+    """)
+    List<String> getLikedVideoThumbnails(@Param("user") User user);
 }

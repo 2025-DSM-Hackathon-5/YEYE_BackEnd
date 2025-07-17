@@ -26,6 +26,7 @@ public class VideoController {
     private final GetMyVideoListUseCase getMyVideoListUseCase;
     private final GetRandomVideoDetailUseCase getRandomVideoDetailUseCase;
     private final ToggleLikeUseCase toggleLikeUseCase;
+    private final GetLikedVideosUseCase getLikedVideosUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -56,6 +57,12 @@ public class VideoController {
     @GetMapping("/my")
     public GetMyVideoListResponseDto getMyVideoList() {
         return getMyVideoListUseCase.execute();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/liked")
+    public List<String> getLikedVideos() {
+        return getLikedVideosUseCase.execute();
     }
 
     @ResponseStatus(HttpStatus.OK)
