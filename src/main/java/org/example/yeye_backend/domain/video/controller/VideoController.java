@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -59,8 +60,8 @@ public class VideoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<GetRandomVideoDetailResponseDto> getRandomVideoDetail() {
-        return getRandomVideoDetailUseCase.execute();
+    public Map<String, List<GetRandomVideoDetailResponseDto>> getRandomVideoDetail() {
+        return Map.of("videos", getRandomVideoDetailUseCase.execute());
     }
 
     @ResponseStatus(HttpStatus.OK)
