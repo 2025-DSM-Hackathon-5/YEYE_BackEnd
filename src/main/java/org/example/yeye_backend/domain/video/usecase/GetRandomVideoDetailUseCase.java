@@ -7,6 +7,7 @@ import org.example.yeye_backend.domain.video.dto.response.GetRandomVideoDetailRe
 import org.example.yeye_backend.domain.video.model.Video;
 import org.example.yeye_backend.domain.video.repository.vo.VideoAndWriterData;
 import org.example.yeye_backend.domain.video.service.CheckLikeService;
+import org.example.yeye_backend.domain.video.service.GetLikeService;
 import org.example.yeye_backend.domain.video.service.GetVideoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GetRandomVideoDetailUseCase {
     private final UserFacade userFacade;
+    private final GetLikeService getLikeService;
     private final GetVideoService getVideoService;
     private final CheckLikeService checkLikeService;
 
@@ -31,9 +33,11 @@ public class GetRandomVideoDetailUseCase {
         UUID randomId = videoIdList.get(random.nextInt(videoIdList.size()));
 
         Video video = getVideoService.getVideoById(randomId);
+
+        int likeCnt = getLikeService.getLikeCntByVideoId(randomId);
         VideoAndWriterData data = getVideoService.getVideoAndWriterDataByVideoId(randomId);
         boolean isLiked = checkLikeService.getCheckLikeExistsByUserAndVideoResult(user, video);
 
-        return GetRandomVideoDetailResponseDto.of(data, isLiked);
+        return GetRandomVideoDetailResponseDto.of(data, isLiked, likeCnt);
     }
 }

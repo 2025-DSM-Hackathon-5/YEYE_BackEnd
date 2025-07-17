@@ -11,9 +11,10 @@ public record GetRandomVideoDetailResponseDto(
     String title,
     String writer,
     String writerProfile,
-    boolean isLiked
+    boolean isLiked,
+    int likeCnt
 ) {
-    public static GetRandomVideoDetailResponseDto of(VideoAndWriterData data, boolean isLiked) {
+    public static GetRandomVideoDetailResponseDto of(VideoAndWriterData data, boolean isLiked, int likeCnt) {
         return new GetRandomVideoDetailResponseDto(
                 data.videoId(),
                 data.videoUrl(),
@@ -21,7 +22,8 @@ public record GetRandomVideoDetailResponseDto(
                 data.title(),
                 data.writer(),
                 data.writerProfile(),
-                isLiked
+                isLiked,
+                likeCnt
         );
     }
 }
