@@ -10,7 +10,6 @@ import org.example.yeye_backend.domain.auth.service.LoginService;
 import org.example.yeye_backend.domain.auth.service.ReissueService;
 import org.example.yeye_backend.domain.auth.service.SignupService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user")
@@ -21,11 +20,8 @@ public class AuthController {
     private final ReissueService reissueService;
 
     @PostMapping("/signup")
-    public void signUp(
-        @RequestPart(value = "profile", required = false) MultipartFile profileImage,
-        @RequestPart("body") @Valid RegisterRequestDto dto
-    ){
-        signupService.signup(profileImage, dto);
+    public void signUp(@ModelAttribute @Valid RegisterRequestDto dto){
+        signupService.signup(dto);
     }
 
     @PostMapping("/login")

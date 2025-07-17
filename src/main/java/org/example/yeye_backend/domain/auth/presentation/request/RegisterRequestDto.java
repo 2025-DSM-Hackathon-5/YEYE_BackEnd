@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 public record RegisterRequestDto(
+        MultipartFile profileImage,
+
         @NotBlank(message = "아이디 입력은 필수 입력값입니다.")
         @Size(max = 10, message = "아이디는 10글자 이하입니다.")
         String accountId,

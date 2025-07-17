@@ -19,14 +19,14 @@ public class SignupService {
     private final FileUploadService fileUploadService;
 
     @Transactional
-    public void signup(MultipartFile profileImage, RegisterRequestDto dto){
+    public void signup(RegisterRequestDto dto){
         if(userRepository.findByAccountId(dto.accountId()).isPresent()){
             throw UserExistException.EXCEPTION;
         }
 
         String profileImageUrl = null;
-        if (profileImage != null) {
-            profileImageUrl = fileUploadService.uploadFile(profileImage);
+        if (dto.profileImage() != null) {
+            profileImageUrl = fileUploadService.uploadFile(dto.profileImage());
         }
 
         userRepository.save(User.builder()
