@@ -45,4 +45,10 @@ public interface VideoRepository extends CrudRepository<Video, UUID> {
         WHERE v.user = :user
     """)
     List<VideoListItemVO> getVideoListByUser(@Param("user") User user);
+
+    @Query("""
+        SELECT v
+        FROM tbl_video v
+    """)
+    List<Video> findAllVideo();
 }

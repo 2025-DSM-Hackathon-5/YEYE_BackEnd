@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -58,7 +59,7 @@ public class VideoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public GetRandomVideoDetailResponseDto getRandomVideoDetail() {
+    public List<GetRandomVideoDetailResponseDto> getRandomVideoDetail() {
         return getRandomVideoDetailUseCase.execute();
     }
 

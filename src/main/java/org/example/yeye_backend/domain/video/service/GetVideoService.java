@@ -16,4 +16,6 @@ public interface GetVideoService {
     VideoAndWriterData getVideoAndWriterDataByVideoId(UUID videoId);
 
     List<VideoListItemVO> getVideoListByUser(User user);
+
+    List<Video> getAllVideo();
 }

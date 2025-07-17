@@ -41,4 +41,9 @@ public class GetVideoServiceImpl implements GetVideoService {
     public List<VideoListItemVO> getVideoListByUser(User user) {
         return videoRepository.getVideoListByUser(user);
     }
+
+    @Override
+    public List<Video> getAllVideo() {
+        return videoRepository.findAllVideo();
+    }
 }
