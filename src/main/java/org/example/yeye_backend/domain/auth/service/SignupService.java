@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class SignupService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final FileUploadService fileUploadService;
 
     @Transactional
     public void signup(RegisterRequestDto dto){
@@ -24,16 +23,10 @@ public class SignupService {
             throw UserExistException.EXCEPTION;
         }
 
-        String profileImageUrl = null;
-        if (dto.profileImage() != null) {
-            profileImageUrl = fileUploadService.uploadFile(dto.profileImage());
-        }
-
         userRepository.save(User.builder()
                 .accountId(dto.accountId())
                 .name(dto.name())
                 .password(passwordEncoder.encode(dto.password()))
-                .profileImageUrl(profileImageUrl)
                 .build());
     }
 }

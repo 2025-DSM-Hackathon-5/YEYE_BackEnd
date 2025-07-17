@@ -20,7 +20,7 @@ public class AuthController {
     private final ReissueService reissueService;
 
     @PostMapping("/signup")
-    public void signUp(@ModelAttribute @Valid RegisterRequestDto dto){
+    public void signUp(@RequestBody @Valid RegisterRequestDto dto){
         signupService.signup(dto);
     }
 
